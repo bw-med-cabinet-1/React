@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import RegisterForm from './components/RegisterForm';
 import { Route } from 'react-router-dom'
+import axios from 'axios'
 
 const initialRegFormValues = {
   username: '',
@@ -18,7 +19,16 @@ function App() {
   }
 
   const postNewUser = newUser => {
-    console.log(newUser)
+    axios.post('https://bw-medicine-cabinet.herokuapp.com/api/auth/register', newUser)
+      .then(res => {
+        console.log('this is the response' + res)
+        console.log('this is the user object' + newUser)
+        setRegFormValues(initialRegFormValues)
+      })
+      .catch(err => {
+        console.log(newUser)
+        setRegFormValues(initialRegFormValues)
+      })
   }
 
   const submitForm = () => {
