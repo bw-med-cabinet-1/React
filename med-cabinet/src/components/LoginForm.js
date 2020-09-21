@@ -4,8 +4,35 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Styles = styled.div`
+    .container {
+        border: 2px solid #596267;
+        border-radius: 10px;
+    }
+
+    .headline-container {
+        color: #596267;
+    }
+
     button {
         margin: 16px 16px;
+    }
+
+    .secondary-button {
+        background-color: white;
+        color: #596267;
+    }
+
+    .secondary-button:hover {
+        background-color: #596267;
+        color: white;
+    }
+
+    label {
+        color: #596267;
+    }
+    
+    input {
+        
     }
 
 `
@@ -30,7 +57,9 @@ export default function LoginForm(props) {
       
       <Styles>
       <Container className='form-container'>
-        <h3>Log-In</h3>
+        <div className="headline-container">
+            <h2>Log in</h2>
+        </div>
         <Form onSubmit={onSubmit} className='form'>
         {/* <FormGroup>
             <Label for="first_name">First Name</Label>
@@ -89,7 +118,7 @@ export default function LoginForm(props) {
             </FormText>
 
         <Button className="submitButton">Sign in</Button>
-        <Button tag={Link} to='/register' onClick={cancel}>Register</Button>
+        <Button tag={Link} to='/register' onClick={cancel} className='secondary-button'>Register</Button>
         {/* <div className='errors'>
                 <div>{errors.telNum}</div>
                 <div>{errors.email}</div>

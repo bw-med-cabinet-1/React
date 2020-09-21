@@ -4,10 +4,39 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Styles = styled.div`
+    .container {
+        border: 2px solid #596267;
+        border-radius: 10px;
+    }
+
+    .headline-container {
+        color: #596267;
+    }
+
     button {
         margin: 16px 16px;
     }
 
+    .secondary-button {
+        background-color: white;
+        color: #596267;
+    }
+
+    .secondary-button:hover {
+        background-color: #596267;
+        color: white;
+    }
+
+    label {
+        color: #596267;
+    }
+
+    @media (min-width: 991px) {
+        form {
+        width: 65%;
+        margin : 0 auto;
+    }
+    }
 `
 
 export default function RegisterForm(props) {
@@ -27,7 +56,10 @@ export default function RegisterForm(props) {
     return (
         <Styles>
         <Container className='form-container'>
-        <h3>Register</h3>
+            <div className="headline-container">
+                <h2>Register</h2>
+            </div>
+        
         <Form onSubmit={onSubmit} className='form'>
         {/* <FormGroup>
             <Label for="first_name">First Name</Label>
@@ -97,7 +129,7 @@ export default function RegisterForm(props) {
             </FormText>
 
         <Button className="submitButton">Register</Button>
-        <Button tag={Link} to='/' onClick={cancel}>Cancel</Button>
+        <Button tag={Link} to='/' onClick={cancel} className='secondary-button'>Cancel</Button>
         {/* <div className='errors'>
                 <div>{errors.telNum}</div>
                 <div>{errors.email}</div>
