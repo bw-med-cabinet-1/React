@@ -10,7 +10,9 @@ const Styles = styled.div`
 
 `
 
-export default function RegisterForm(props) {
+
+
+export default function LoginForm(props) {
     
     const { values, changeForm, submit, cancel } = props
 
@@ -25,9 +27,10 @@ export default function RegisterForm(props) {
     }
 
     return (
-        <Styles>
-        <Container className='form-container'>
-        <h3>Register</h3>
+      
+      <Styles>
+      <Container className='form-container'>
+        <h3>Log-In</h3>
         <Form onSubmit={onSubmit} className='form'>
         {/* <FormGroup>
             <Label for="first_name">First Name</Label>
@@ -80,24 +83,13 @@ export default function RegisterForm(props) {
                 value={values.password} 
             />
         </FormGroup>
-        <FormGroup>
-            <Label for="role">Select</Label>
-            <Input 
-                type="select" 
-                name="role"
-                onChange={onChange}
-                value={values.role}
-            >
-            <option value={false}>User</option>
-            <option value={true}>Admin</option>
-            </Input>
-        </FormGroup>
+
             <FormText color="muted">
             Thanks for choosing us! We hope you enjoy your experience and to see you again!
             </FormText>
 
-        <Button className="submitButton">Register</Button>
-        <Button tag={Link} to='/' onClick={cancel}>Cancel</Button>
+        <Button className="submitButton">Sign in</Button>
+        <Button tag={Link} to='/register' onClick={cancel}>Register</Button>
         {/* <div className='errors'>
                 <div>{errors.telNum}</div>
                 <div>{errors.email}</div>
@@ -105,7 +97,6 @@ export default function RegisterForm(props) {
                 <div>{errors.size}</div>
         </div> */}
         </Form>
-        
         
     </Container>
     </Styles>

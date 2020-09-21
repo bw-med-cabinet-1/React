@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm';
 import { Route } from 'react-router-dom'
 import axios from 'axios'
@@ -10,12 +11,38 @@ const initialRegFormValues = {
   role: false,
 }
 
+const initialLoginFormValues = {
+  username: '',
+  password: '',
+}
+
 function App() {
 
   const [regFormValues, setRegFormValues] = useState(initialRegFormValues)
+  const [loginFormValues, setLoginFormValues] = useState(initialLoginFormValues)
 
-  const changeForm = (name, value) => {
+  const changeLoginForm = (name, value) => {
+    setLoginFormValues({ ...loginFormValues, [name] : value})
+  }
+
+  const changeRegForm = (name, value) => {
     setRegFormValues({ ...regFormValues, [name] : value})
+  }
+
+  const cancelInput = () => {
+    setRegFormValues(initialRegFormValues)
+    setLoginFormValues(initialLoginFormValues)
+  }
+
+  const signUserIn = userDetails => {
+    axios.post('https://bw-medicine-cabinet.herokuapp.com/api/auth/login', userDetails)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(userDetails)
+        setLoginFormValues(initialLoginFormValues)
+      })
   }
 
   const postNewUser = newUser => {
@@ -31,7 +58,15 @@ function App() {
       })
   }
 
-  const submitForm = () => {
+  const submitLoginForm = () => {
+    const userDetails = {
+      username: loginFormValues.username.trim(),
+      password: loginFormValues.password.trim(),
+    }
+    signUserIn(userDetails)
+  }
+
+  const submitRegForm = () => {
     const newUser = {
       username: regFormValues.username.trim(),
       password: regFormValues.password.trim(),
@@ -42,12 +77,21 @@ function App() {
 
   return (
     <div className="App">
-      <Route path='/'>
-        <RegisterForm 
-          values={regFormValues}
-          changeForm={changeForm}
-          submit={submitForm}
-        />
+      <Route exact path='/'>
+          <LoginForm 
+            values={loginFormValues}
+            changeForm={changeLoginForm}
+            submit={submitLoginForm}
+            cancel={cancelInput}
+          />
+      </Route>
+      <Route path='/register'>
+          <RegisterForm 
+            values={regFormValues}
+            changeForm={changeRegForm}
+            submit={submitRegForm}
+            cancel={cancelInput}
+          />
       </Route>
     </div>
   );
