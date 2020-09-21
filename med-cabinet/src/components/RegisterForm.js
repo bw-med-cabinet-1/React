@@ -19,7 +19,7 @@ export default function RegisterForm(props) {
 
     return (
         <Container className='form-container'>
-        <h3>Order here :)</h3>
+        <h3>Register</h3>
         <Form onSubmit={onSubmit} className='form'>
         {/* <FormGroup>
             <Label for="first_name">First Name</Label>
@@ -80,8 +80,8 @@ export default function RegisterForm(props) {
                 onChange={onChange}
                 value={values.role}
             >
-            <option value={false}>User</option>
-            <option value={true}>Admin</option>
+            <option value={0}>User</option>
+            <option value={1}>Admin</option>
             </Input>
         </FormGroup>
             <FormText color="muted">
