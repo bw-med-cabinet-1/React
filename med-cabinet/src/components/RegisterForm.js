@@ -25,6 +25,7 @@ const Styles = styled.div`
     .secondary-button {
         background-color: white;
         color: #596267;
+        margin: 0 8px 8px;
     }
 
     .secondary-button:hover {
@@ -148,7 +149,9 @@ export default function RegisterForm(props) {
                 <div>{errors.size}</div>
         </div> */}
         </Form>
-        <Button tag={Link} to='/login' onClick={cancel} className='secondary-button'>Cancel</Button>
+        <Button tag={Link} to='/login' onClick={cancel} className='secondary-button'>Log in</Button>
+        <Button tag={Link} to='/' onClick={cancel} className='secondary-button'>Cancel</Button>
+
         
         
     </Container>
