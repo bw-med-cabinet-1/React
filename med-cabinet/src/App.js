@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import Home from './components/Home'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm';
 import { Route } from 'react-router-dom'
@@ -38,6 +39,7 @@ function App() {
     axios.post('https://bw-medicine-cabinet.herokuapp.com/api/auth/login', userDetails)
       .then(res => {
         console.log(res)
+        setLoginFormValues(initialLoginFormValues)
       })
       .catch(err => {
         console.log(userDetails)
@@ -48,13 +50,11 @@ function App() {
   const postNewUser = newUser => {
     axios.post('https://bw-medicine-cabinet.herokuapp.com/api/auth/register', newUser)
       .then(res => {
-        console.log('this is the response' + res)
-        console.log('this is the user object' + newUser)
+        console.log(res)
         setRegFormValues(initialRegFormValues)
       })
       .catch(err => {
-        console.log(newUser)
-        setRegFormValues(initialRegFormValues)
+        debugger
       })
   }
 
@@ -77,7 +77,10 @@ function App() {
 
   return (
     <div className="App">
-      <Route exact path='/'>
+        <Route exact path='/'>
+          <Home />
+      </Route>
+      <Route path='/login'>
           <LoginForm 
             values={loginFormValues}
             changeForm={changeLoginForm}

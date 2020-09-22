@@ -13,6 +13,11 @@ const Styles = styled.div`
         color: #596267;
     }
 
+    form {
+        width: 90%;
+        margin: 0 auto;
+    }
+
     button {
         margin: 16px 16px;
     }
@@ -36,7 +41,13 @@ const Styles = styled.div`
         width: 65%;
         margin : 0 auto;
     }
+
+    @media (max-width: 575px) {
+        .container {
+            height: 100%;
+        }
     }
+}
 `
 
 export default function RegisterForm(props) {
@@ -120,8 +131,8 @@ export default function RegisterForm(props) {
                 onChange={onChange}
                 value={values.role}
             >
-            <option value={false}>User</option>
-            <option value={true}>Admin</option>
+            <option value={0}>User</option>
+            <option value={1}>Admin</option>
             </Input>
         </FormGroup>
             <FormText color="muted">
@@ -129,7 +140,7 @@ export default function RegisterForm(props) {
             </FormText>
 
         <Button className="submitButton">Register</Button>
-        <Button tag={Link} to='/' onClick={cancel} className='secondary-button'>Cancel</Button>
+
         {/* <div className='errors'>
                 <div>{errors.telNum}</div>
                 <div>{errors.email}</div>
@@ -137,6 +148,7 @@ export default function RegisterForm(props) {
                 <div>{errors.size}</div>
         </div> */}
         </Form>
+        <Button tag={Link} to='/login' onClick={cancel} className='secondary-button'>Cancel</Button>
         
         
     </Container>

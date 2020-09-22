@@ -118,7 +118,7 @@ export default function LoginForm(props) {
             </FormText>
 
         <Button className="submitButton">Sign in</Button>
-        <Button tag={Link} to='/register' onClick={cancel} className='secondary-button'>Register</Button>
+
         {/* <div className='errors'>
                 <div>{errors.telNum}</div>
                 <div>{errors.email}</div>
@@ -126,7 +126,7 @@ export default function LoginForm(props) {
                 <div>{errors.size}</div>
         </div> */}
         </Form>
-        
+        <Button tag={Link} to='/register' onClick={cancel} className='secondary-button'>Register</Button>        
     </Container>
     </Styles>
     )
