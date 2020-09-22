@@ -4,7 +4,8 @@ import Home from './components/Home'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm';
 import { Route } from 'react-router-dom'
-import axios from 'axios'
+// import axios from 'axios'
+import axiosWithAuth from './utils/axiosWithAuth'
 
 const initialRegFormValues = {
   username: '',
@@ -36,7 +37,7 @@ function App() {
   }
 
   const signUserIn = userDetails => {
-    axios.post('https://bw-medicine-cabinet.herokuapp.com/api/auth/login', userDetails)
+    axiosWithAuth().post('api/auth/login', userDetails)
       .then(res => {
         console.log(res)
         setLoginFormValues(initialLoginFormValues)
@@ -48,7 +49,7 @@ function App() {
   }
 
   const postNewUser = newUser => {
-    axios.post('https://bw-medicine-cabinet.herokuapp.com/api/auth/register', newUser)
+    axiosWithAuth().post('api/auth/register', newUser)
       .then(res => {
         console.log(res)
         setRegFormValues(initialRegFormValues)
