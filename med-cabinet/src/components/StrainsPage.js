@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import StrainsCard from "./StrainsCard";
 import StrainsList from "./StrainsList";
 import { fetchApi } from "../api/fetchApi";
 import styled from "styled-components";
@@ -7,15 +7,13 @@ import styled from "styled-components";
 const StrainsStyle = styled.div`
   * {
     font-family: "Source Sans Pro", sans-serif;
-    
   }
-
   background: linear-gradient(#2d6a4f, #1b4332);
-  margin: 5% auto;
+  margin: 1.5% auto;
   padding: 4%;
-  width : 90%;
+  width : 98%;
   color: white;
-  height: 80vh;
+  height: 110vh;
 
   .strain-page{    
       margin : 4% auto;
@@ -50,6 +48,8 @@ const StrainsPage = (props) => {
         <div className="strain-page">
         <h1> Strains Page </h1>
         <StrainsList strains={strainList} updateStrains={setStrainList} />
+        <h3>Strain Informations</h3>
+        <StrainsCard strains ={StrainsCard}/> 
         </div>
       </StrainsStyle>
     // </div>

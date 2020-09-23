@@ -3,7 +3,8 @@ import "./App.css";
 import Home from "./components/Home";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import { Switch } from "react-router";
 import { useHistory } from "react-router-dom"; 
 import axios from "axios";
 import axiosWithAuth from "./utils/axiosWithAuth";
@@ -72,6 +73,7 @@ function App() {
       })
       .catch((err) => {
         debugger;
+        // history.push("/strain-page");
       });
   };
 
@@ -93,8 +95,8 @@ function App() {
   };
 
   return (
-  
-      <Router>
+  <Switch>
+      {/* <Router> */}
           <div className="App">
         <Route exact path="/">
           <Home />
@@ -119,7 +121,8 @@ function App() {
         </Route>
       
         </div>
-      </Router>
+      {/* </Router> */}
+  </Switch>
   );
 }
 

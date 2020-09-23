@@ -45,6 +45,13 @@ const StrainsList = ({ strains, updateStrains }) => {
     setStrainsToEdit(strain);
   };
 
+  // const handleOnchange = (e) => {
+  //   setStrainsToEdit({
+  //     ...strains, 
+  //     [e.target.name] : e.target.value,
+  //   })
+  // };
+
   const saveEdit = (e) => {
     e.preventDefault();
     axiosWithAuth()
@@ -109,7 +116,11 @@ const StrainsList = ({ strains, updateStrains }) => {
                     strain_name: e.target.value,
                   })
                 }
+                // onChange={handleOnchange}
                 value={strainsToEdit.strain_name}
+                name="Name of strain"
+                type="text" 
+                placeholder="Name of strain"
               />
             </label>
             <div className="buton">
