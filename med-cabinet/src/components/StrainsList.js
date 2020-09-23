@@ -1,6 +1,33 @@
 import React, { useState } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import style from "styled-components"
 
+const ListStyle = style.div`
+button { 
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+}
+input{
+        width: 100%;
+        padding: 4%;
+        margin: 3% 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+
+`
 const initialStrains = {
   strain_name: "",
   symptoms: "",
@@ -49,6 +76,7 @@ const StrainsList = ({ strains, updateStrains }) => {
       .catch((err) => console.log(err));
   };
   return (
+    <ListStyle>
     <div className="strain-list">
       <h3> Strain List</h3>
       <br/>
@@ -62,7 +90,7 @@ const StrainsList = ({ strains, updateStrains }) => {
                   e.stopPropagation();
                   deleteStrain(strain);
                 }}
-              > X </span>
+              > x </span>
               {strain.strain_name}
             </span>
           </h4>
@@ -86,12 +114,13 @@ const StrainsList = ({ strains, updateStrains }) => {
             />
           </label>
           <div className="buton">
-            <button type="submit "> Save </button>
+            <button type="submit "> Save </button> &nbsp;
             <button onClick={() => setEdit(false)}> Cancel </button>
           </div>
         </form>
       )}
     </div>
+    </ListStyle>
   );
 }; //close for StrainsList
 

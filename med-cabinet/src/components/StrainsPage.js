@@ -22,7 +22,7 @@ const StrainsStyle = styled.div`
       padding: 2%;
       background-color: #081c15;
       width: 70%;
-      border-radius: 10px;
+      border-radius: 15px;
       box-shadow: 0 15px 25px rgba(0,0,0,.6);
   }
 `;
