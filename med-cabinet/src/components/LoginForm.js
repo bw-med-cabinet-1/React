@@ -121,7 +121,7 @@ export default function LoginForm(props) {
             you again!
           </FormText>
 
-          <Button className="submitButton">Sign in</Button>
+          <Button className="submitButton" type="submit">Sign in</Button>
 
           {/* <div className='errors'>
                 <div>{errors.telNum}</div>

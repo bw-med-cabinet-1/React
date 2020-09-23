@@ -9,7 +9,7 @@ const initialStrains = {
 };
 
 const StrainsList = ({ strains, updateStrains }) => {
-  console.log(strains);
+//   console.log(strain_name);
   const [edit, setEdit] = useState(false);
   const [strainsToEdit, setStrainsToEdit] = useState(initialStrains);
 
@@ -25,6 +25,7 @@ const StrainsList = ({ strains, updateStrains }) => {
       .then((res) => {
         updateStrains([
           ...strainsToEdit.map((strain) => {
+
             if (strain.id === strainsToEdit.id) {
               return strainsToEdit;
             } else {
@@ -35,7 +36,7 @@ const StrainsList = ({ strains, updateStrains }) => {
         setEdit(false);
       })
       .catch((err) => {
-        console.log("there's an error in edit");
+        console.log(err,"there's an error in edit");
       });
   };
 
@@ -50,9 +51,10 @@ const StrainsList = ({ strains, updateStrains }) => {
   return (
     <div className="strain-list">
       <h3> Strain List</h3>
+      <br/>
       <ul>
         {strains.map((strain) => (
-          <li key={strain.strain} onClick={() => edit(strain)}>
+          <h4 key={strain.strain} onClick={() => editStrain(strain)}>
             <span>
               <span
                 className="delete-strain"
@@ -60,19 +62,19 @@ const StrainsList = ({ strains, updateStrains }) => {
                   e.stopPropagation();
                   deleteStrain(strain);
                 }}
-              ></span>
-              {strain.strain}
+              > X </span>
+              {strain.strain_name}
             </span>
-          </li>
+          </h4>
         ))}
       </ul>
       {/* close for 1st ul */}
-      {editing && (
+      {editStrain && (
         <form onSubmit={saveEdit}>
           <legend> Edit the strains name as your preference </legend>
           <label>
             {" "}
-            Strain name :
+            Strain name 
             <input
               onChange={(e) =>
                 setStrainsToEdit({
