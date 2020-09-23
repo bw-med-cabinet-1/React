@@ -45,13 +45,13 @@ function App() {
   };
 
   const signUserIn = (userDetails) => {
-
+   
     axiosWithAuth()
       .post("api/auth/login", userDetails)
       .then((res) => {
         console.log(res.data);
         setLoginFormValues(initialLoginFormValues);
-        window.localStorage.setItem("token", res.data.token)
+        localStorage.setItem("token", res.data.token)
         history.push("/strain-page");
       })
       .catch((err) => {

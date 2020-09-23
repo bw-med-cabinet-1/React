@@ -25,9 +25,9 @@ const StrainsStyle = styled.div`
       border-radius: 15px;
       box-shadow: 0 15px 25px rgba(0,0,0,.6);
   }
-`;
+`
 
-const StrainsPage = () => {
+const StrainsPage = (props) => {
   const [strainList, setStrainList] = useState([]);
   const getStrains = () => {
     fetchApi()
@@ -41,7 +41,7 @@ const StrainsPage = () => {
   };
 
   useEffect(() => {
-    getStrains();
+  getStrains();
   }, [setStrainList]);
 
   return (

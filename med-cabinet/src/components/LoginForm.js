@@ -10,6 +10,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const Styles = styled.div`
   .container {
@@ -45,6 +46,7 @@ const Styles = styled.div`
 `;
 
 export default function LoginForm(props) {
+  const history = useHistory();
   const { values, changeForm, submit, cancel } = props;
 
   const onChange = (evt) => {
@@ -56,6 +58,10 @@ export default function LoginForm(props) {
     evt.preventDefault();
     submit();
   };
+  
+  const handleClick = () =>{
+    history.push("/strain-page");
+  }
 
   return (
     <Styles>
@@ -121,7 +127,7 @@ export default function LoginForm(props) {
             you again!
           </FormText>
 
-          <Button className="submitButton" type="submit">Sign in</Button>
+          <Button className="submitButton" type="submit" onClick={handleClick}> Sign in </Button>
 
           {/* <div className='errors'>
                 <div>{errors.telNum}</div>
