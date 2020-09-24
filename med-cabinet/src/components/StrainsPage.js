@@ -48,4 +48,6 @@ const StrainsPage = () => {
         <StrainsList strains={strainList} getStrains={getStrains} updateStrains={setStrainList} />
         </div>
       </StrainsStyle>
+  )
+  }
 export default StrainsPage;
