@@ -1,7 +1,23 @@
 import React from 'react'
+import { Card, Button, CardTitle, CardText, Row, Col, Container } from 'reactstrap'
 
 export default function StrainDisplay() {
     return (
-        <h1>This is the strain Display</h1>
+        <Row>
+            <Col sm="6">
+              <Card body>
+                <CardTitle>Special Title Treatment</CardTitle>
+                <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                <Button>Go somewhere</Button>
+              </Card>
+            </Col>
+            <Col sm="6">
+              <Card body>
+                <CardTitle>Special Title Treatment</CardTitle>
+                <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                <Button>Go somewhere</Button>
+              </Card>
+            </Col>
+          </Row>
     )
 }
