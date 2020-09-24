@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import { fetchApi } from "../api/fetchApi";
 import style from "styled-components";
 
 const ListStyle = style.div`
@@ -30,15 +31,15 @@ input{
 `;
 
 const initialStrains = {
-  strain_name: "",
-
+  strain: "",
 };
 
-const StrainsList = ({ strains, updateStrains }) => {
-
-  //   console.log(strain_name);
+const StrainsList = ({ strains, updateStrains, getStrains }) => {
+    console.log(strains)
+  const [strainList, setStrainList] = useState([]);
   const [edit, setEdit] = useState(false);
   const [strainsToEdit, setStrainsToEdit] = useState(initialStrains);
+
 
   const editStrain = (strain) => {
     setEdit(true);
@@ -55,7 +56,7 @@ const StrainsList = ({ strains, updateStrains }) => {
   const saveEdit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .put(`/api/strains/${strainsToEdit.id}`, strainsToEdit)
+      .put(`api/strains/:${strainsToEdit.id}`, strainsToEdit)
       .then(res => {
         updateStrains([
           ...strains.map(strain => {
@@ -66,6 +67,7 @@ const StrainsList = ({ strains, updateStrains }) => {
             }
           })
         ])
+        getStrains();
         setEdit(false);
       })
       .catch(err => {
@@ -75,12 +77,30 @@ const StrainsList = ({ strains, updateStrains }) => {
 
   const deleteStrain = strain => {
     axiosWithAuth()
-      .delete(`/api/strains/${strain.id}`)
-      .then(res => {
-        updateStrains(strains.filter(strain => strain.id !== res.data));
+      .delete(`api/strains/${strain.id}`)
+      .then(res => { 
+        console.log(res.data)
+        getStrains();
+        // updateStrains(strains.filter(strain => strain.id !== res.data.id))
       })
       .catch(err => console.log(err));
   };
+  
+  // const getStrains = () => {
+  //   fetchApi()
+  //     .then((res) => {
+  //       console.log(res, "this is the data");
+  //       // getStrains();
+  //       setStrainList(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err, "there's an error");
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   getStrains();
+  // }, [ setStrainList]);
 
   return (
     <ListStyle>
@@ -88,7 +108,7 @@ const StrainsList = ({ strains, updateStrains }) => {
         <h3> Strain List</h3>
 
         {strains.map((strain) => (
-          <h4 key={strain.strain_name} onClick={() => editStrain(strain)}>
+          <h4 key={strain.strain} onClick={() => editStrain(strain)}>
             <span>
               <span
                 className="delete-strain"
@@ -98,7 +118,7 @@ const StrainsList = ({ strains, updateStrains }) => {
                 }}
               > x &nbsp;
               </span>
-              {strain.strain_name}
+              {strain.strain}
             </span>
           </h4>
         ))}
@@ -113,11 +133,11 @@ const StrainsList = ({ strains, updateStrains }) => {
                 onChange={ e =>
                   setStrainsToEdit({
                     ...strainsToEdit,
-                    strain_name: e.target.value,
+                    strain: e.target.value,
                   })
                 }
                 // onChange={handleOnchange}
-                value={strainsToEdit.strain_name}
+                value={strainsToEdit.strain}
                 name="Name of strain"
                 type="text" 
                 placeholder="Name of strain"
@@ -126,7 +146,7 @@ const StrainsList = ({ strains, updateStrains }) => {
             <div className="buton">
               <button type="submit" onClick={saveEdit}> Save </button> &nbsp;
               <button onClick={() => setEdit(false)}> Cancel </button>  &nbsp;
-              <button onClick={deleteStrain}> Delete</button>
+              {/* <button onClick={deleteStrain}> Delete</button> */}
             </div>
           </form>
         )}
