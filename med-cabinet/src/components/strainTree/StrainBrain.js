@@ -5,8 +5,11 @@ import StrainInterface from './StrainInterface'
 import { Route } from 'react-router-dom'
 import axios from 'axios'
 import StrainDisplay from './StrainDisplay'
+import { useHistory } from "react-router-dom";
+
 
 const initialPatientFormValues = {
+    text: '',
     strain_preference: '',
     anxiety: false,
     depression: false,
@@ -46,7 +49,9 @@ const initialPatientFormValues = {
   }
 
   export default function StrainBrain() {
-    
+    const [yourStrainlist, setYourStrainList] = useState([])
+
+
     const [patientFormValues, setPatientFormValues] = useState(initialPatientFormValues)
 
     const changePatientForm = (name, value) => {
@@ -54,10 +59,13 @@ const initialPatientFormValues = {
     }
 
     const postNewStrainRequest = strainRequest => {
-        axios.post('fakeaxiospost.com', strainRequest)
+        axios.post('https://cors-anywhere.herokuapp.com/https://medcab-predictions.herokuapp.com/predict', strainRequest)
           .then(res => {
-            console.log(res)
+            console.log(res.data["Nearest Neighbors"])
             console.log(strainRequest)
+            setYourStrainList(res.data["Nearest Neighbors"])
+            setPatientFormValues(initialPatientFormValues)
+            history.push("/thisIsYourStrain")
           })
           .catch(err => {
             console.log(err)
@@ -67,8 +75,9 @@ const initialPatientFormValues = {
 
     const submitPatientForm = () => {
     const strainRequest = {
-        strain_preference: patientFormValues.strain_preference,
-        ailments: [ 'anxiety', 'depression', 'pain', 'fatigue', 'insomnia', 'brain_fog', 'loss_of_appetite', 'nausea', 'low_libido'].filter(ailment => patientFormValues[ailment]),
+        text: patientFormValues.text.trim(),
+        // strain_preference: patientFormValues.strain_preference,
+        // ailments: [ 'anxiety', 'depression', 'pain', 'fatigue', 'insomnia', 'brain_fog', 'loss_of_appetite', 'nausea', 'low_libido'].filter(ailment => patientFormValues[ailment]),
         include: [ 'Happy', 'Relaxed', 'Euphoric', 'Uplifted', 'Creative', 'Sleepy', 'Energized', 'Focused', 'Hungry', 'Talkative', 'Tingly', 'Giggly', 'Aroused' ].filter(posRes => patientFormValues[posRes]),
         exclude: [ 'happyNeg', 'relaxedNeg', 'euphoricNeg', 'upliftedNeg', 'creativeNeg', 'sleepyNeg', 'energizedNeg', 'focusedNeg', 'hungryNeg', 'talkativeNeg', 'tinglyNeg', 'gigglyNeg', 'arousedNeg' ].filter(negRes => patientFormValues[negRes]),
     }
@@ -89,6 +98,7 @@ const initialPatientFormValues = {
                 values={patientFormValues}
                 changeForm={changePatientForm}
                 submit={submitPatientForm}
+                strainList1={yourStrainlist}
               />
             </Route>
             <Route path='/allStrains'>

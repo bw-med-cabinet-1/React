@@ -17,7 +17,6 @@ const Styles = styled.div`
     
 
 export default function StrainDisplay() {
-
     const [strainList, setStrainList] = useState([]);
     const getStrains = () => {
         fetchApi()
@@ -35,17 +34,16 @@ export default function StrainDisplay() {
     
     return (
         <Styles>
-        <Container><h3> Strain List</h3>
+        <Container>
+            <h3> Strain List</h3>
         <Container className="strainList-container">
         {strainList.map((strain) => (
-            <Container className='card-container'>
-            <h4 key={strain.strain}>
+            <Container className='card-container' key={strain.strain}>
             <Card body className='strain-card'>
                 <CardTitle>{strain.strain}</CardTitle>
                 <CardText>{strain.description}</CardText>
                 <Button>Go somewhere</Button>
             </Card>
-          </h4>
             </Container>
         ))}
         </Container>

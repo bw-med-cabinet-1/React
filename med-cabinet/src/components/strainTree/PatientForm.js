@@ -543,6 +543,17 @@ export default function PatientForm(props) {
             <option value='Not sure'>Not sure</option>
             </Input>
         </FormGroup>
+        <FormGroup>
+            <Label for="text">Input Text</Label>
+            <Input 
+                type="text" 
+                name="text" 
+                onChange={onChange}
+                value={values.text}
+                className='selection-input'
+            >
+            </Input>
+        </FormGroup>
         {/* <FormGroup className="specReqBox">
             <Label for="specialRequests">Special Requests?</Label>
             <Input 

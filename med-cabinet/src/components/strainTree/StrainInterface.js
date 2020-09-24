@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import PatientForm from './PatientForm'
 import styled from 'styled-components'
 import StrainDisplay from './StrainDisplay'
+import YourStrains from './YourStrains';
 
 const Styles = styled.div`
     .strain-display {
@@ -33,7 +34,7 @@ const Styles = styled.div`
 
 export default function StrainInterface(props) {
 
-  const { values, changeForm, submit } = props;
+  const { values, changeForm, submit, strainList1 } = props;
 
   const [activeTab, setActiveTab] = useState('1');
 
@@ -72,7 +73,7 @@ export default function StrainInterface(props) {
       </Nav>
       <TabContent activeTab={activeTab}>
         <TabPane tabId="1">
-        <Row>
+        {/* <Row>
             <Col sm="6">
               <Card body>
                 <CardTitle>Special Title Treatment</CardTitle>
@@ -87,7 +88,10 @@ export default function StrainInterface(props) {
                 <Button>Go somewhere</Button>
               </Card>
             </Col>
-          </Row>
+          </Row> */}
+          <YourStrains 
+            strains={strainList1}
+          />
         </TabPane>
         <TabPane tabId="2">
           <PatientForm 
