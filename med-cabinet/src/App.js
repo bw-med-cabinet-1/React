@@ -10,6 +10,7 @@ import axios from "axios";
 import axiosWithAuth from "./utils/axiosWithAuth";
 import PrivateRoute from "./utils/PrivateRoute";
 import StrainsPage from "./components/StrainsPage";
+import StrainBrain from './components/strainTree/StrainBrain'
 
 const initialRegFormValues = {
   username: "",
@@ -114,6 +115,7 @@ function App() {
             cancel={cancelInput}
           />
         </Route>
+        <StrainBrain />
       </div>
       {/* </Router> */}
     </Switch>
