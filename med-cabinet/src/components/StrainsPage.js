@@ -31,7 +31,6 @@ const StrainsPage = (props) => {
     fetchApi()
       .then((res) => {
         console.log(res, "this is the data");
-        // getStrains();
         setStrainList(res.data);
       })
       .catch((err) => {
@@ -44,16 +43,12 @@ const StrainsPage = (props) => {
   }, []);
 
   return (
-    // <div className="strain-page">
       <StrainsStyle>
         <div className="strain-page">
         <h1> Strains Page </h1>
         <StrainsList strains={strainList} getStrains={getStrains} updateStrains={setStrainList} />
-        <h3>Strain Informations</h3>
-        {/* <StrainsCard strains ={StrainsCard}/>  */}
         </div>
       </StrainsStyle>
-    // </div>
   );
 };
 

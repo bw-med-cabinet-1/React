@@ -46,12 +46,7 @@ const StrainsList = ({ strains, updateStrains, getStrains }) => {
     setStrainsToEdit(strain);
   };
 
-  // const handleOnchange = (e) => {
-  //   setStrainsToEdit({
-  //     ...strains, 
-  //     [e.target.name] : e.target.value,
-  //   })
-  // };
+ 
 
   const saveEdit = (e) => {
     e.preventDefault();
@@ -81,26 +76,11 @@ const StrainsList = ({ strains, updateStrains, getStrains }) => {
       .then(res => { 
         console.log(res.data)
         getStrains();
-        // updateStrains(strains.filter(strain => strain.id !== res.data.id))
       })
       .catch(err => console.log(err));
   };
   
-  // const getStrains = () => {
-  //   fetchApi()
-  //     .then((res) => {
-  //       console.log(res, "this is the data");
-  //       // getStrains();
-  //       setStrainList(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err, "there's an error");
-  //     });
-  // };
 
-  // useEffect(() => {
-  //   getStrains();
-  // }, [ setStrainList]);
 
   return (
     <ListStyle>
@@ -136,7 +116,6 @@ const StrainsList = ({ strains, updateStrains, getStrains }) => {
                     strain: e.target.value,
                   })
                 }
-                // onChange={handleOnchange}
                 value={strainsToEdit.strain}
                 name="Name of strain"
                 type="text" 
