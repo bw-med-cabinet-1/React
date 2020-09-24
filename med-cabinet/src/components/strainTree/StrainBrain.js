@@ -49,6 +49,8 @@ const initialPatientFormValues = {
   }
 
   export default function StrainBrain() {
+    const history = useHistory();
+
     const [yourStrainlist, setYourStrainList] = useState([])
 
 
@@ -61,11 +63,10 @@ const initialPatientFormValues = {
     const postNewStrainRequest = strainRequest => {
         axios.post('https://cors-anywhere.herokuapp.com/https://medcab-predictions.herokuapp.com/predict', strainRequest)
           .then(res => {
-            console.log(res.data["Nearest Neighbors"])
             console.log(strainRequest)
             setYourStrainList(res.data["Nearest Neighbors"])
             setPatientFormValues(initialPatientFormValues)
-            history.push("/thisIsYourStrain")
+            history.replace("/thisIsYourStrain")
           })
           .catch(err => {
             console.log(err)
