@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import '../../App.css';
 import PatientForm from './PatientForm'
-import StrainDisplay from './StrainDisplay'
+import StrainInterface from './StrainInterface'
 import { Route } from 'react-router-dom'
 import axios from 'axios'
+import StrainDisplay from './StrainDisplay'
 
 const initialPatientFormValues = {
     strain_preference: '',
@@ -84,11 +85,14 @@ const initialPatientFormValues = {
                 />
             </Route>
             <Route path='/thisIsYourStrain'>
-              <StrainDisplay 
+              <StrainInterface 
                 values={patientFormValues}
                 changeForm={changePatientForm}
                 submit={submitPatientForm}
               />
+            </Route>
+            <Route path='/allStrains'>
+              <StrainDisplay />
             </Route>
         </div>
     )
