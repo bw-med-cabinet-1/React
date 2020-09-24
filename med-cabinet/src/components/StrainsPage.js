@@ -26,7 +26,6 @@ const StrainsStyle = styled.div`
 
 const StrainsPage = () => {
   const [strainList, setStrainList] = useState([]);
-
   const getStrains = () => {
     fetchApi()
       .then(res => {
@@ -37,10 +36,9 @@ const StrainsPage = () => {
         console.log(err, "there's an error");
       });
   };
-
   useEffect(() => {
-    getStrains();
-  }, [setStrainList]);
+    getStrains()
+  }, []);
 
   return (
     <> 
