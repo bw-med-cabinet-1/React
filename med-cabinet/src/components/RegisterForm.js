@@ -10,8 +10,6 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
-
 
 const Styles = styled.div`
   .container {
@@ -21,6 +19,11 @@ const Styles = styled.div`
 
   .headline-container {
     color: #596267;
+  }
+
+  form {
+    width: 90%;
+    margin: 0 auto;
   }
 
   button {
@@ -42,11 +45,21 @@ const Styles = styled.div`
     color: #596267;
   }
 
-  input {
+  @media (min-width: 991px) {
+    form {
+      width: 65%;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 575px) {
+      .container {
+        height: 100%;
+      }
+    }
   }
 `;
 
-export default function LoginForm(props) {
+export default function RegisterForm(props) {
   const { values, changeForm, submit, cancel } = props;
 
   const onChange = (evt) => {
@@ -58,14 +71,14 @@ export default function LoginForm(props) {
     evt.preventDefault();
     submit();
   };
-  
 
   return (
     <Styles>
       <Container className="form-container">
         <div className="headline-container">
-          <h2>Log in</h2>
+          <h2>Register</h2>
         </div>
+
         <Form onSubmit={onSubmit} className="form">
           {/* <FormGroup>
             <Label for="first_name">First Name</Label>
@@ -118,14 +131,25 @@ export default function LoginForm(props) {
               value={values.password}
             />
           </FormGroup>
-
+          <FormGroup>
+            <Label for="role">Select</Label>
+            <Input
+              type="select"
+              name="role"
+              onChange={onChange}
+              value={values.role}
+            >
+              <option value={0}>User</option>
+              <option value={1}>Admin</option>
+            </Input>
+          </FormGroup>
           <FormText color="muted">
             Thanks for choosing us! We hope you enjoy your experience and to see
             you again!
           </FormText>
 
-          <Button className="submitButton" type="submit"  > Sign in </Button>
-          {/* onClick={handleClick} */}
+          <Button className="submitButton">Register</Button>
+
           {/* <div className='errors'>
                 <div>{errors.telNum}</div>
                 <div>{errors.email}</div>
@@ -135,11 +159,11 @@ export default function LoginForm(props) {
         </Form>
         <Button
           tag={Link}
-          to="/register"
+          to="/login"
           onClick={cancel}
           className="secondary-button"
         >
-          Register
+          Log in
         </Button>
         <Button tag={Link} to="/" onClick={cancel} className="secondary-button">
           Cancel

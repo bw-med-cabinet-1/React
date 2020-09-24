@@ -28,6 +28,7 @@ function App() {
   const [regFormValues, setRegFormValues] = useState(initialRegFormValues);
   const [loginFormValues, setLoginFormValues] = useState(initialLoginFormValues);
 
+
   const changeLoginForm = (name, value) => {
     setLoginFormValues({ ...loginFormValues, [name]: value });
   };
@@ -89,9 +90,9 @@ function App() {
   };
 
   return (
-    <Switch>
+  <Switch>
       {/* <Router> */}
-      <div className="App">
+          <div className="App">
         <Route exact path="/">
           <Home />
         </Route>
@@ -102,9 +103,9 @@ function App() {
             submit={submitLoginForm}
             cancel={cancelInput}
           />
-        </Route>
-        <PrivateRoute exact path="/strain-page" component={StrainsPage} />
-
+        </Route>  
+        <PrivateRoute exact path="/strain-page" component={StrainsPage}/> 
+      
         <Route path="/register">
           <RegisterForm
             values={regFormValues}
