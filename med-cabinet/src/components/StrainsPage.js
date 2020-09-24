@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import StrainsCard from "./StrainsCard";
 import StrainsList from "./StrainsList";
 import { fetchApi } from "../api/fetchApi";
 import styled from "styled-components";
@@ -23,21 +22,21 @@ const StrainsStyle = styled.div`
       border-radius: 15px;
       box-shadow: 0 15px 25px rgba(0,0,0,.6);
   }
-`
+`;
 
-const StrainsPage = (props) => {
+
+const StrainsPage = () => {
   const [strainList, setStrainList] = useState([]);
   const getStrains = () => {
     fetchApi()
-      .then((res) => {
-        console.log(res, "this is the data");
+      .then(res => {
+        console.log(res.data, "this is the data");
         setStrainList(res.data);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err, "there's an error");
       });
   };
-
   useEffect(() => {
     getStrains()
   }, []);
@@ -49,7 +48,4 @@ const StrainsPage = (props) => {
         <StrainsList strains={strainList} getStrains={getStrains} updateStrains={setStrainList} />
         </div>
       </StrainsStyle>
-  );
-};
-
 export default StrainsPage;

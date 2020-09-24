@@ -27,12 +27,13 @@ input{
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
-
 `;
+
 
 const initialStrains = {
   strain: "",
 };
+
 
 const StrainsList = ({ strains, updateStrains, getStrains }) => {
     console.log(strains)
@@ -51,8 +52,10 @@ const StrainsList = ({ strains, updateStrains, getStrains }) => {
   const saveEdit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .put(`api/strains/:${strainsToEdit.id}`, strainsToEdit)
+     .put(`api/strains/${strainsToEdit.id}`, strainsToEdit)
       .then(res => {
+        console.log(res);
+
         updateStrains([
           ...strains.map(strain => {
             if (strain.id === strainsToEdit.id) {
@@ -66,9 +69,12 @@ const StrainsList = ({ strains, updateStrains, getStrains }) => {
         setEdit(false);
       })
       .catch(err => {
+        setEdit(false);
+      })
         console.log(err, "there's an error in edit");
       });
   };
+
 
   const deleteStrain = strain => {
     axiosWithAuth()
@@ -86,7 +92,6 @@ const StrainsList = ({ strains, updateStrains, getStrains }) => {
     <ListStyle>
       <div className="strain-list">
         <h3> Strain List</h3>
-
         {strains.map((strain) => (
           <h4 key={strain.strain} onClick={() => editStrain(strain)}>
             <span>
@@ -129,6 +134,71 @@ const StrainsList = ({ strains, updateStrains, getStrains }) => {
             </div>
           </form>
         )}
+      </div>
+    </ListStyle>
+
+  const deleteStrain = (strain) => {
+    axiosWithAuth()
+      .delete(`api/strains/${strain.id}`)
+      .then(res => {
+        updateStrains(strains.filter(strain => strain.id !== res.data));
+      })
+      .catch(err => console.log(err));
+  };
+
+ 
+  return (
+    <ListStyle>
+    <div className="strain-list">
+      <h3> Strain List</h3>
+
+      {strains.map( strain => (
+        <h4 key={strains.strain} onClick={() => editStrain(strain)}>
+          <span>
+            <span
+              className="delete-strain"
+              onClick={(e) => {
+                e.stopPropagation();
+                deleteStrain(strain)
+              }}
+            > x &nbsp;&nbsp;
+            </span>
+            {strain.strain}
+          </span>
+        </h4>
+      ))}
+
+      {/* close for 1st ul */}
+      {editStrain && (
+        <form onSubmit={saveEdit}>
+          <legend> Edit the strains name as your preference </legend>
+          <label>
+            Strain name
+            <input
+              onChange={(e) =>
+                setStrainsToEdit({
+                  ...strainsToEdit,
+                  strain: e.target.value,
+                })
+              }
+              // onChange={handleOnchange}
+              value={strainsToEdit.strain}
+              name="Name of strain"
+              type="text"
+              placeholder="Name of strain"
+            />
+          </label>
+          <div className="buton">
+            <button type="submit" onClick={saveEdit}>
+              
+              Save
+            </button>
+            &nbsp;
+            <button onClick={() => setEdit(false)}> Cancel </button> &nbsp;
+            {/* <button onClick={deleteStrain}> Delete</button> */}
+          </div>
+        </form>
+      )}
       </div>
     </ListStyle>
   );

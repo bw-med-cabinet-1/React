@@ -3,15 +3,13 @@ import "./App.css";
 import Home from "./components/Home";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 // import { Switch } from "react-router";
-import { useHistory } from "react-router-dom"; 
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import axiosWithAuth from "./utils/axiosWithAuth";
 import PrivateRoute from "./utils/PrivateRoute";
 import StrainsPage from "./components/StrainsPage";
-
-
 
 const initialRegFormValues = {
   username: "",
@@ -28,9 +26,8 @@ function App() {
   const history = useHistory();
 
   const [regFormValues, setRegFormValues] = useState(initialRegFormValues);
-  const [loginFormValues, setLoginFormValues] = useState(
-    initialLoginFormValues
-  );
+  const [loginFormValues, setLoginFormValues] = useState(initialLoginFormValues);
+
 
   const changeLoginForm = (name, value) => {
     setLoginFormValues({ ...loginFormValues, [name]: value });
@@ -46,13 +43,12 @@ function App() {
   };
 
   const signUserIn = (userDetails) => {
-   
     axiosWithAuth()
       .post("api/auth/login", userDetails)
       .then((res) => {
         console.log(res.data);
         setLoginFormValues(initialLoginFormValues);
-        localStorage.setItem("token", res.data.token)
+        localStorage.setItem("token", res.data.token);
         history.push("/strain-page");
       })
       .catch((err) => {
@@ -73,7 +69,6 @@ function App() {
       })
       .catch((err) => {
         debugger;
-        // history.push("/strain-page");
       });
   };
 
@@ -119,10 +114,9 @@ function App() {
             cancel={cancelInput}
           />
         </Route>
-      
-        </div>
+      </div>
       {/* </Router> */}
-  </Switch>
+    </Switch>
   );
 }
 

@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
+
 const Styles = styled.div`
   .container {
     border: 2px solid #596267;
@@ -46,7 +47,6 @@ const Styles = styled.div`
 `;
 
 export default function LoginForm(props) {
-  // const history = useHistory();
   const { values, changeForm, submit, cancel } = props;
 
   const onChange = (evt) => {
@@ -59,9 +59,6 @@ export default function LoginForm(props) {
     submit();
   };
   
-  // const handleClick = () =>{
-  //   history.push("/strain-page");
-  // }
 
   return (
     <Styles>
