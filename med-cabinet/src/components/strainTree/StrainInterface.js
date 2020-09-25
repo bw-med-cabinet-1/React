@@ -34,7 +34,7 @@ const Styles = styled.div`
 
 export default function StrainInterface(props) {
 
-  const { values, changeForm, submit, strainList1 } = props;
+  const { values, changeForm, submit, strainList1, setPatientFormValues, initialPFV } = props;
 
   const [activeTab, setActiveTab] = useState('1');
 
@@ -57,7 +57,9 @@ export default function StrainInterface(props) {
         <NavItem>
           <NavLink
             className={classnames({ active: activeTab === '2' })}
-            onClick={() => { toggle('2'); }}
+            onClick={() => { 
+              setPatientFormValues(initialPFV)
+              toggle('2'); }}
           >
             Try Again
           </NavLink>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Container, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
-import classnames from 'classnames';
-import styled from 'styled-components'
+
 
 export default function YourStrains(props) {
  
@@ -9,7 +8,8 @@ export default function YourStrains(props) {
  
     return (
         <Container className="strainList-container">
-        {strains.map((strain) => (
+        {
+        strains.map((strain) => (
           <Container className='card-container' key={strain.Strain}>
           <Card body className='strain-card'>
             <CardTitle>{strain.Strain}</CardTitle>

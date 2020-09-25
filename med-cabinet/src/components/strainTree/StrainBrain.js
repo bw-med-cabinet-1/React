@@ -64,6 +64,7 @@ const initialPatientFormValues = {
         axios.post('https://cors-anywhere.herokuapp.com/https://medcab-predictions.herokuapp.com/predict', strainRequest)
           .then(res => {
             console.log(strainRequest)
+            console.log(res.data["Nearest Neighbors"])
             setYourStrainList(res.data["Nearest Neighbors"])
             setPatientFormValues(initialPatientFormValues)
             history.replace("/thisIsYourStrain")
@@ -79,9 +80,9 @@ const initialPatientFormValues = {
         text: patientFormValues.text.trim(),
         // strain_preference: patientFormValues.strain_preference,
         // ailments: [ 'anxiety', 'depression', 'pain', 'fatigue', 'insomnia', 'brain_fog', 'loss_of_appetite', 'nausea', 'low_libido'].filter(ailment => patientFormValues[ailment]),
-        include: [ 'Happy', 'Relaxed', 'Euphoric', 'Uplifted', 'Creative', 'Sleepy', 'Energized', 'Focused', 'Hungry', 'Talkative', 'Tingly', 'Giggly', 'Aroused' ].filter(posRes => patientFormValues[posRes]),
-        exclude: [ 'happyNeg', 'relaxedNeg', 'euphoricNeg', 'upliftedNeg', 'creativeNeg', 'sleepyNeg', 'energizedNeg', 'focusedNeg', 'hungryNeg', 'talkativeNeg', 'tinglyNeg', 'gigglyNeg', 'arousedNeg' ].filter(negRes => patientFormValues[negRes]),
-    }
+        include: [ 'Happy', 'Relaxed', 'Euphoric', 'Uplifted', 'Creative', 'Sleepy', 'Focused', 'Hungry', 'Talkative', 'Tingly', 'Giggly', 'Aroused' ].filter(posRes => patientFormValues[posRes]),
+        exclude: [],
+      }
     postNewStrainRequest(strainRequest)
     }
     
@@ -100,6 +101,8 @@ const initialPatientFormValues = {
                 changeForm={changePatientForm}
                 submit={submitPatientForm}
                 strainList1={yourStrainlist}
+                setPatientFormValues={setPatientFormValues}
+                initialPFV={initialPatientFormValues}
               />
             </Route>
             <Route path='/allStrains'>
