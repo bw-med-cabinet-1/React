@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import StrainPage from "../StrainsPage";
 
 const Styles = styled.div`
     {
@@ -10,8 +11,7 @@ const Styles = styled.div`
         width: 90%;
         border-radius: 10px;
         border: 2px solid #CED4DA;
-
-        box-shadow: 0px 15px 25px rgba(0,0,0,.6);
+        box-shadow: 0px 15px 25px rgba(0,0,0,0.6);
 
     }
 
@@ -68,9 +68,13 @@ export default function YourStrains(props) {
                 <CardText>RATING: {strain.Rating}</CardText>
                 <Button>Info</Button>
           </Card>
+         
           </Container>
+          
     ))}
-      </Container>
+         <StrainPage/>
+      </Container>      
+      
     </Styles>
     )
 }

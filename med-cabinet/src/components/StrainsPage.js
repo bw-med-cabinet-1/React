@@ -5,8 +5,8 @@ import styled from "styled-components";
 
 const StrainsStyle = styled.div`
  {
-    font-family: "Source Sans Pro", sans-serif;
-
+  font-family: "Source Sans Pro", sans-serif;
+  letter-spacing: 3px;
   background: linear-gradient(#2d6a4f, #1b4332);
   margin: 1.5% auto;
   padding: 4%;
@@ -14,7 +14,6 @@ const StrainsStyle = styled.div`
   color: white;
   height: 110vh;
   }
-
   .strain-page {
     margin: 4% auto;
     padding: 2%;
@@ -45,7 +44,7 @@ const StrainsPage = () => {
     <> 
     <StrainsStyle>
       <div className="strain-page">
-        <h1> Strains Page </h1>
+        <h1> Name of strain List  </h1>
         <StrainsList strains={strainList} getStrains={getStrains} updateStrains={setStrainList} />
         </div>
       </StrainsStyle>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const ListStyle = styled.div`
 button { 
-    box-shadow:inset 0px 1px 0px 0px #ffffff;
+  box-shadow:inset 0px 1px 0px 0px #ffffff;
 	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
 	background-color:#ffffff;
 	border-radius:6px;
@@ -16,20 +16,52 @@ button {
 	font-weight:bold;
 	padding:6px 24px;
 	text-decoration:none;
-    text-shadow:0px 1px 0px #ffffff;
+  text-shadow:0px 1px 0px #ffffff;
+
 }
 input{
-        width: 100%;
-        padding: 4%;
-        margin: 3% 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;}
+  width: 100%;
+  padding: 4%;
+  margin: 3% 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+      }
+legend {
+  background-color: whitesmoke;
+  color:  #081c15;
+  width: 95%;
+  border-radius: 10px; 
+  margin : 2% auto;
+  padding: 1%; 
+  font-style: italic;
+  font-size: 1.5rem;
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.6);
+}
+.strain-list{
+  display : flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+}
+h4 {
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.6);
+  margin: 2% auto;
+  padding: 2%;
+  width: 95%;
+}
+h4:hover {
+  background-color: whitesmoke;
+  color: #081c15;
+}
+span{
+  display: flex;
+}
 `
 
 const initialStrains = {
   strain: "",
+  type:"",
 };
 
 const StrainsList = ({ strains, updateStrains, getStrains }) => {
@@ -81,31 +113,29 @@ const StrainsList = ({ strains, updateStrains, getStrains }) => {
   return (
     <ListStyle>
       <div className="strain-list">
-        <h3> Strain List</h3>
+        <legend> Edit your favorite strain's name as your preference </legend>
         {strains.map((strain) => (
           <h4 key={strain.strain} onClick={() => editStrain(strain)}>
             <span>
-              <span
+              <button
                 className="delete-strain"
                 onClick={(e) => {
                   e.stopPropagation();
                   deleteStrain(strain);
                 }}
               >
-                {" "}
-                x &nbsp;
-              </span>
-              {strain.strain}
+                x  
+              </button>  &nbsp; &nbsp;
+              <h5> Name : {strain.strain} </h5> &nbsp;
             </span>
           </h4>
         ))}
 
         {/* close for 1st ul */}
         {editStrain && (
-          <form onSubmit={saveEdit}>
-            <legend> Edit the strains name as your preference </legend>
+          <form onSubmit={saveEdit}>         
             <label>
-              Strain name
+              Strain name 
               <input
                 onChange={(e) =>
                   setStrainsToEdit({

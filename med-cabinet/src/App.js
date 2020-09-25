@@ -153,8 +153,8 @@ function App() {
             cancel={cancelInput}
             errors={loginFormErrors}
           />
+            <PrivateRoute exact path="/strain-page" component={StrainsPage}/> 
         </Route>  
-        <PrivateRoute exact path="/strain-page" component={StrainsPage}/> 
       
         <Route path="/register">
           <RegisterForm
