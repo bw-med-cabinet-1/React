@@ -98,7 +98,7 @@ export default function StrainInterface(props) {
           />
         </TabPane>
         <TabPane tabId="3">
-          <StrainDisplay />
+            <StrainDisplay />
         </TabPane>
       </TabContent>
     </Container>

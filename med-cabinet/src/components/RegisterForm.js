@@ -159,7 +159,7 @@ export default function RegisterForm(props) {
         </Form>
         <Button
           tag={Link}
-          to="/login"
+          to="/"
           onClick={cancel}
           className="secondary-button"
         >

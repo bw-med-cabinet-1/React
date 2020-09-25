@@ -7,6 +7,10 @@ const Styles = styled.div`
         border: 2px solid #536354;
         border-radius: 10px;
         margin: 24px 0;
+        box-shadow: 0 10px 15px 0 rgba(0,0,0,.6);
+        background-color: white;
+        padding: 24px 2%
+
     }
 
     h2 {
