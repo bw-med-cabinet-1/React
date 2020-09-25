@@ -16,16 +16,7 @@ const Styles = styled.div`
         color: white;
         height: auto;
         border-radius: 10px;
-    }
-    
-    .strain-display {
-      margin: 2% auto;
-        padding: 1% 3%;
-        border-radius: 10px;
-        border: 2px solid #CED4DA;
-
-        box-shadow: 0px 15px 25px rgba(0,0,0,.6);
-
+      
     }
 
     button {
@@ -48,6 +39,12 @@ const Styles = styled.div`
 
     .tabs {
       color: white;
+      font-size: 1.4em;
+    }
+
+    .tab-content {
+      width: 100%;
+      margin: 10px 0;
     }
 `
 
@@ -57,7 +54,6 @@ export default function StrainInterface(props) {
 
   return (
     <Styles>
-    <Container className='strain-display'>
       <Nav tabs>
         <NavItem>
           <NavLink
@@ -89,7 +85,7 @@ export default function StrainInterface(props) {
           </NavLink>
         </NavItem>
       </Nav>
-      <TabContent activeTab={activeTab}>
+      <TabContent classname='tab-content' activeTab={activeTab}>
         <TabPane tabId="1">
         {/* <Row>
             <Col sm="6">
@@ -123,7 +119,6 @@ export default function StrainInterface(props) {
             <StrainDisplay />
         </TabPane>
       </TabContent>
-    </Container>
     </Styles>
   );
 }

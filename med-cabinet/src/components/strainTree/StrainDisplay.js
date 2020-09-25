@@ -8,7 +8,7 @@ const Styles = styled.div`
         margin: 2% auto;
         padding: 1% 3%;
         background-color: #edf4ed;
-        width: 85%;
+        width: 90%;
         border-radius: 10px;
         border: 2px solid #CED4DA;
 
@@ -24,6 +24,9 @@ const Styles = styled.div`
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+        width: 100%;
     }
 
     .strain-card {
@@ -34,7 +37,7 @@ const Styles = styled.div`
     }
     
     .card-container {
-        width: 45%;
+        width: 50%;
         border-radius: 10px;
     }
 

@@ -6,7 +6,7 @@ const Styles = styled.div`
       {  margin: 2% auto;
         padding: 1% 3%;
         background-color: #edf4ed;
-        width: 85%;
+        width: 90%;
         border-radius: 10px;
         border: 2px solid #CED4DA;
 

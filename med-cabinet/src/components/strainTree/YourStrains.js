@@ -7,7 +7,7 @@ const Styles = styled.div`
         margin: 2% auto;
         padding: 1% 3%;
         background-color: #edf4ed;
-        width: 85%;
+        width: 90%;
         border-radius: 10px;
         border: 2px solid #CED4DA;
 
@@ -60,12 +60,12 @@ export default function YourStrains(props) {
           strains.map((strain) => (
             <Container className='card-container' key={strain.Strain}>
           <Card body className='strain-card'>
-          <CardTitle className='card-title'>{strain.strain}</CardTitle>
-                <CardText className='strain-type'>{strain.type}</CardText>
-                <CardText>{strain.description}</CardText>
-                <CardText>Flavors: {strain.flavors}</CardText>
-                <CardText>Effects: {strain.effects}</CardText>
-                <CardText>RATING: {strain.rating}</CardText>
+          <CardTitle className='card-title'>{strain.Strain}</CardTitle>
+                <CardText className='strain-type'>{strain.Type}</CardText>
+                <CardText>{strain.Description}</CardText>
+                <CardText>Flavors: {strain.Flavors}</CardText>
+                <CardText>Effects: {strain.Effects}</CardText>
+                <CardText>RATING: {strain.Rating}</CardText>
                 <Button>Info</Button>
           </Card>
           </Container>
