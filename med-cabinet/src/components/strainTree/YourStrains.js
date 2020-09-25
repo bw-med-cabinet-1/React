@@ -12,8 +12,8 @@ export default function YourStrains(props) {
         strains.map((strain) => (
           <Container className='card-container' key={strain.Strain}>
           <Card body className='strain-card'>
-            <CardTitle>{strain.Strain}</CardTitle>
-            <h1>{strain.Rating}</h1>
+            <h1>{strain.Strain}</h1>
+            <h5>{strain.Rating}</h5>
             <CardText>{strain.Description}</CardText>
             <Button>Go somewhere</Button>
           </Card>

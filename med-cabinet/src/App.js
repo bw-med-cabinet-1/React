@@ -67,6 +67,8 @@ function App() {
       .then((res) => {
         console.log(res);
         setRegFormValues(initialRegFormValues);
+        history.push('/login');
+        alert("You've successfully registered, Welcome!!")
       })
       .catch((err) => {
         debugger;
