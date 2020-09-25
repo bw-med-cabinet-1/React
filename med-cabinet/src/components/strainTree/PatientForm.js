@@ -6,6 +6,7 @@ const Styles = styled.div`
     .form-container {
         border: 2px solid #536354;
         border-radius: 10px;
+        margin: 24px 0;
     }
 
     h2 {

@@ -4,10 +4,16 @@ import styled from 'styled-components'
 import { Card, Button, CardTitle, CardText, Row, Col, Container } from 'reactstrap'
 
 const Styles = styled.div`
+    .big-container {
+        border: 2px solid #536354;
+        border-radius: 10px;
+        margin: 24px 0;
+    }
     .strainList-container {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        border-top: 1px solid #c8d3c4;
     }
     
     .card-container {
@@ -34,7 +40,7 @@ export default function StrainDisplay() {
     
     return (
         <Styles>
-        <Container>
+        <Container className="big-container">
             <h3> Strain List</h3>
         <Container className="strainList-container">
         {strainList.map((strain) => (

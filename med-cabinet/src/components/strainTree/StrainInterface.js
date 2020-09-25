@@ -10,7 +10,7 @@ const Styles = styled.div`
     .strain-display {
         border: 1px solid #536354;
         border-radius: 10px;
-        padding: 16px;
+        padding: 16px 32px;
     }
 
     button {
