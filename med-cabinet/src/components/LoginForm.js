@@ -14,10 +14,28 @@ import { useHistory } from "react-router-dom";
 
 
 const Styles = styled.div`
-  .container {
-    border: 2px solid #596267;
-    border-radius: 10px;
-  }
+    {
+        font-family: "Source Sans Pro", sans-serif;
+        background: linear-gradient(#2d6a4f, #1b4332); // eslint-disable-line
+        margin: .75% auto;
+        padding: 4%;
+        width : 98%;
+        color: white;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .container {
+        margin: 2% auto;
+        padding: 1% 3%;
+        background-color: #edf4ed;
+        width: 70%;
+        border-radius: 10px;
+        border: 2px solid #CED4DA;
+
+        box-shadow: 0px 15px 25px rgba(0,0,0,.6);
+
+    }
 
   .headline-container {
     color: #596267;

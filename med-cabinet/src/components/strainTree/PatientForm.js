@@ -3,24 +3,30 @@ import { Button, Form, FormGroup, Label, Input, FormText, Container } from 'reac
 import styled from 'styled-components'
 
 const Styles = styled.div`
-    .form-container {
-        border: 2px solid #536354;
+        margin: 2% auto;
+        padding: 1% 3%;
+        background-color: #edf4ed;
+        width: 70%;
         border-radius: 10px;
-        margin: 24px 0;
-        box-shadow: 0 10px 15px 0 rgba(0,0,0,.6);
-        background-color: white;
-        padding: 24px 2%
+        border: 2px solid #CED4DA;
+
+        box-shadow: 0px 15px 25px rgba(0,0,0,.6);
 
     }
 
     h2 {
-        color: #536354;
+        color: #5A6267;
     }
 
     h5 {
-        color: #536354;
+        color: #5A6267;
         text-align: left;
         margin: 4px 0 4px 1%;
+        font-size: 1.6em;
+    }
+
+    .formGroup {
+        margin: 50px 0;
     }
 
     .selection-input {
@@ -28,9 +34,8 @@ const Styles = styled.div`
         margin: 0 auto;
     }
 
-    .checklist-container {
-        display: flex;
-        flex-direction: column;
+    .form-section {
+        margin: 32px 0;
     }
 
     .ailment-checklist {
@@ -41,6 +46,7 @@ const Styles = styled.div`
         flex-wrap: wrap;
         padding: 8px 0;
         margin: 8px 0;
+        background-color: white;
     }
 
     .positive-res-list {
@@ -51,6 +57,7 @@ const Styles = styled.div`
         flex-wrap: wrap;
         padding: 8px 0;
         margin: 8px 0;
+        background-color: white;
     }
 
     .negative-res-list {
@@ -61,6 +68,7 @@ const Styles = styled.div`
         flex-wrap: wrap;
         padding: 8px 0;
         margin: 8px 0;
+        background-color: white;
     }
 
     .ailment {
@@ -76,25 +84,32 @@ const Styles = styled.div`
     }
 
     label {
-        color: #536354;
+        color: #5A6267;
+        font-size: 1.2em;
     }
 
     .strainType-selection {
-        color: #536354;
+        color: #5A6267;
         text-align: left;
         margin: 0;
         padding: 0;
-        align-self: auto;
+        font-size: 1.6em;     
+    }
+
+    .text-input {
+        font-size: 1.6em;
         
     }
 
     button {
         margin: 16px;
-        background-color: #647565;
+        background-color: #6C757D;
+        padding: 24px 8%;
+        font-size: 1.6em;
     }
 
     button:hover {
-        background-color: #536354;
+        background-color: #5A6267;
     }
   
 `
@@ -117,7 +132,7 @@ export default function PatientForm(props) {
   return (
     <Styles>
     <Container className='form-container'>
-        <h2>Find Your Strain</h2>
+            <h2>Find Your Strain</h2>
         <Form onSubmit={onSubmit} className='form'>
 
         {/* <FormGroup>
@@ -136,7 +151,7 @@ export default function PatientForm(props) {
             <option value='orange'>Orange</option>
             </Input>        
         </FormGroup> */}
-        <Container className='checklist-container'>
+        <Container className='form-section'>
         <h5>Ailments</h5>
         <FormGroup check className="ailment-checklist">
             <Container className="ailment">
@@ -239,6 +254,8 @@ export default function PatientForm(props) {
                 </Label>
                 </Container>
         </FormGroup>
+        </Container>
+        <Container className='form-section'>
         <h5>What feelings are you seeking?</h5>
         <FormGroup check className="positive-res-list">
             <Container className="positive-response">
@@ -385,6 +402,8 @@ export default function PatientForm(props) {
                 </Label>
             </Container>
         </FormGroup>
+        </Container>
+        <Container className='form-section'>
         <h5>What feelings are you trying to avoid?</h5>
         <FormGroup check className="negative-res-list">
             <Container className="negative-response">
@@ -549,7 +568,7 @@ export default function PatientForm(props) {
             </Input>
         </FormGroup>
         <FormGroup>
-            <Label for="text">Input Text</Label>
+            <Label className='text-input' for="text">Input Text</Label>
             <Input 
                 type="text" 
                 name="text" 
