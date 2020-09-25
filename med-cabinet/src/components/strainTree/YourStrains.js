@@ -6,7 +6,7 @@ export default function YourStrains(props) {
  
     const { strains } = props
 
-    if (!strains) {
+    if (strains === []) {
         return <h2>Working on fetching the best strain for you :)</h2>
     }
  

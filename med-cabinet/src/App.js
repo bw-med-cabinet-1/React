@@ -39,14 +39,16 @@ function App() {
   const [regFormValues, setRegFormValues] = useState(initialRegFormValues);
   const [loginFormValues, setLoginFormValues] = useState(initialLoginFormValues);
   const [loginFormErrors, setLoginFormErrors] = useState(initialLoginFormErrors)
+  const [registrationFormErrors, setRegistrationFormErrors] = useState(initialLoginFormErrors)
 
 
   const changeLoginForm = (name, value) => {
-    validate(name, value)
+    validateLogin(name, value)
     setLoginFormValues({ ...loginFormValues, [name]: value });
   };
 
   const changeRegForm = (name, value) => {
+    validateRegistration(name, value)
     setRegFormValues({ ...regFormValues, [name]: value });
   };
 
@@ -104,30 +106,41 @@ function App() {
     postNewUser(newUser);
   };
 
-  const validate = (name, value) => {
-    // let's validate this specific key/value
-    // yup.reach will allow us to "reach" into the schema and test only one part.
-    // We give reach the schema as the first argument, and the key we want to test as the second.
-    yup
+  const validateLogin = (name, value) => {
+   yup
       .reach(schema, name)
-      // we can then run validate using the value
       .validate(value)
-      // if the validation is successful, we can clear the error message
       .then(valid => { // eslint-disable-line
         setLoginFormErrors({
           ...loginFormErrors,
           [name]: ""
         })
       })
-      /* if the validation is unsuccessful, we can set the error message to the message 
-        returned from yup (that we created in our schema) */
-      .catch(err => {
+     .catch(err => {
         setLoginFormErrors({
           ...loginFormErrors,
           [name]: err.errors[0]
         });
       });
   }
+
+  const validateRegistration = (name, value) => {
+    yup
+       .reach(schema, name)
+       .validate(value)
+       .then(valid => { // eslint-disable-line
+         setRegistrationFormErrors({
+           ...registrationFormErrors,
+           [name]: ""
+         })
+       })
+      .catch(err => {
+         setRegistrationFormErrors({
+           ...registrationFormErrors,
+           [name]: err.errors[0]
+         });
+       });
+   }
 
   return (
   <Switch>
