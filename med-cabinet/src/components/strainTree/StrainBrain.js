@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import '../../App.css';
-import PatientForm from './PatientForm'
 import StrainInterface from './StrainInterface'
 import { Route } from 'react-router-dom'
 import axios from 'axios'
 import StrainDisplay from './StrainDisplay'
 import { useHistory } from "react-router-dom";
+import StrainSearchPage from './StrainSearchPage'
 
 
 const initialPatientFormValues = {
@@ -89,7 +89,7 @@ const initialPatientFormValues = {
     return (
         <div>
             <Route path='/findYourStrain'>
-                <PatientForm 
+                <StrainSearchPage  
                 values={patientFormValues}
                 changeForm={changePatientForm}
                 submit={submitPatientForm}
@@ -104,9 +104,6 @@ const initialPatientFormValues = {
                 setPatientFormValues={setPatientFormValues}
                 initialPFV={initialPatientFormValues}
               />
-            </Route>
-            <Route path='/allStrains'>
-              <StrainDisplay />
             </Route>
         </div>
     )
