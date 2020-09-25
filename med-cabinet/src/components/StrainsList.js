@@ -125,7 +125,7 @@ const StrainsList = ({ strains, updateStrains, getStrains }) => {
                 Save{" "}
               </button>{" "}
               &nbsp;
-              <button onClick={() => setEdit(false)}> Cancel </button> &nbsp;
+              <button onClick={() =>  setStrainsToEdit(initialStrains)}> Cancel </button> &nbsp;
               {/* <button onClick={deleteStrain}> Delete</button> */}
             </div>
           </form>
