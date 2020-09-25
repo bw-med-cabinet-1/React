@@ -96,7 +96,7 @@ const Styles = styled.div`
 
 export default function PatientForm(props) {
 
-    const { values, changeForm, submit } = props
+    const { values, changeForm, submit, toggle } = props
     
     const onChange = evt => {
         const { name, value, type, checked } = evt.target

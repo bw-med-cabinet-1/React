@@ -34,13 +34,7 @@ const Styles = styled.div`
 
 export default function StrainInterface(props) {
 
-  const { values, changeForm, submit, strainList1, setPatientFormValues, initialPFV } = props;
-
-  const [activeTab, setActiveTab] = useState('1');
-
-  const toggle = tab => {
-    if(activeTab !== tab) setActiveTab(tab);
-  }
+  const { values, changeForm, submit, strainList1, setPatientFormValues, initialPFV, toggle, activeTab } = props;
 
   return (
     <Styles>
@@ -100,6 +94,7 @@ export default function StrainInterface(props) {
             values={values}
             changeForm={changeForm}
             submit={submit}
+            toggle={toggle}
           />
         </TabPane>
         <TabPane tabId="3">

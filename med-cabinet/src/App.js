@@ -11,6 +11,9 @@ import axiosWithAuth from "./utils/axiosWithAuth";
 import PrivateRoute from "./utils/PrivateRoute";
 import StrainsPage from "./components/StrainsPage";
 import StrainBrain from './components/strainTree/StrainBrain'
+import schema from './validation/formSchema'
+import * as yup from 'yup'
+
 
 const initialRegFormValues = {
   username: "",
@@ -23,18 +26,29 @@ const initialLoginFormValues = {
   password: "",
 };
 
+const initialLoginFormErrors = {
+  username: "",
+  password: "",
+}
+
+
+
 function App() {
   const history = useHistory();
 
   const [regFormValues, setRegFormValues] = useState(initialRegFormValues);
   const [loginFormValues, setLoginFormValues] = useState(initialLoginFormValues);
+  const [loginFormErrors, setLoginFormErrors] = useState(initialLoginFormErrors)
+  const [registrationFormErrors, setRegistrationFormErrors] = useState(initialLoginFormErrors)
 
 
   const changeLoginForm = (name, value) => {
+    validateLogin(name, value)
     setLoginFormValues({ ...loginFormValues, [name]: value });
   };
 
   const changeRegForm = (name, value) => {
+    validateRegistration(name, value)
     setRegFormValues({ ...regFormValues, [name]: value });
   };
 
@@ -92,6 +106,42 @@ function App() {
     postNewUser(newUser);
   };
 
+  const validateLogin = (name, value) => {
+   yup
+      .reach(schema, name)
+      .validate(value)
+      .then(valid => { // eslint-disable-line
+        setLoginFormErrors({
+          ...loginFormErrors,
+          [name]: ""
+        })
+      })
+     .catch(err => {
+        setLoginFormErrors({
+          ...loginFormErrors,
+          [name]: err.errors[0]
+        });
+      });
+  }
+
+  const validateRegistration = (name, value) => {
+    yup
+       .reach(schema, name)
+       .validate(value)
+       .then(valid => { // eslint-disable-line
+         setRegistrationFormErrors({
+           ...registrationFormErrors,
+           [name]: ""
+         })
+       })
+      .catch(err => {
+         setRegistrationFormErrors({
+           ...registrationFormErrors,
+           [name]: err.errors[0]
+         });
+       });
+   }
+
   return (
   <Switch>
       {/* <Router> */}
@@ -105,6 +155,7 @@ function App() {
             changeForm={changeLoginForm}
             submit={submitLoginForm}
             cancel={cancelInput}
+            errors={loginFormErrors}
           />
         </Route>  
         <PrivateRoute exact path="/strain-page" component={StrainsPage}/> 

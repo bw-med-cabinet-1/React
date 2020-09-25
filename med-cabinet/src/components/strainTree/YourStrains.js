@@ -5,6 +5,10 @@ import { Container, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, Ca
 export default function YourStrains(props) {
  
     const { strains } = props
+
+    if (strains === []) {
+        return <h2>Working on fetching the best strain for you :)</h2>
+    }
  
     return (
         <Container className="strainList-container">
