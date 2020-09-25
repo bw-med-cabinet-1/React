@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./App.css";
-import Home from "./components/Home";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import { Route, Switch } from "react-router-dom";
@@ -81,7 +80,7 @@ function App() {
       .then((res) => {
         console.log(res);
         setRegFormValues(initialRegFormValues);
-        history.push('/login');
+        history.push('/');
         alert("You've successfully registered, Welcome!!")
       })
       .catch((err) => {
@@ -147,9 +146,6 @@ function App() {
       {/* <Router> */}
           <div className="App">
         <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/login">
           <LoginForm
             values={loginFormValues}
             changeForm={changeLoginForm}

@@ -1,6 +1,49 @@
 import React, { useState } from 'react';
 import { Container, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import styled from 'styled-components'
 
+const Styles = styled.div`
+    {
+        margin: 2% auto;
+        padding: 1% 3%;
+        background-color: #edf4ed;
+        width: 85%;
+        border-radius: 10px;
+        border: 2px solid #CED4DA;
+
+        box-shadow: 0px 15px 25px rgba(0,0,0,.6);
+
+    }
+
+    h2 {
+        color: #5A6267;
+    }
+
+    .strainList-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .strain-card {
+        box-shadow: 0px 10px 15px rgba(0,0,0,.6);
+        border: 1px solid #B7B7B7;
+    }
+    
+    .card-container {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .card-title {
+        font-size: 2.4em;
+        text-decoration: bold;
+    }
+
+    .strain-type {
+        font-size: 1.8em;
+    }
+`
 
 export default function YourStrains(props) {
  
@@ -8,21 +51,26 @@ export default function YourStrains(props) {
 
     if (strains === []) {
         return <h2>Working on fetching the best strain for you :)</h2>
-    }
+    } else
  
     return (
-        <Container className="strainList-container">
+    <Styles>
+      <Container className="strainList-container">
         {
-        strains.map((strain) => (
-          <Container className='card-container' key={strain.Strain}>
+          strains.map((strain) => (
+            <Container className='card-container' key={strain.Strain}>
           <Card body className='strain-card'>
-            <h1>{strain.Strain}</h1>
-            <h5>{strain.Rating}</h5>
-            <CardText>{strain.Description}</CardText>
-            <Button>Go somewhere</Button>
+          <CardTitle className='card-title'>{strain.strain}</CardTitle>
+                <CardText className='strain-type'>{strain.type}</CardText>
+                <CardText>{strain.description}</CardText>
+                <CardText>Flavors: {strain.flavors}</CardText>
+                <CardText>Effects: {strain.effects}</CardText>
+                <CardText>RATING: {strain.rating}</CardText>
+                <Button>Info</Button>
           </Card>
           </Container>
     ))}
       </Container>
+    </Styles>
     )
 }
