@@ -47,7 +47,7 @@ const Styles = styled.div`
 `;
 
 export default function LoginForm(props) {
-  const { values, changeForm, submit, cancel } = props;
+  const { values, changeForm, submit, cancel, errors } = props;
 
   const onChange = (evt) => {
     const { name, value } = evt.target;
@@ -126,12 +126,10 @@ export default function LoginForm(props) {
 
           <Button className="submitButton" type="submit"  > Sign in </Button>
           {/* onClick={handleClick} */}
-          {/* <div className='errors'>
-                <div>{errors.telNum}</div>
-                <div>{errors.email}</div>
+          <div className='errors'>
+                <div>{errors.username}</div>
                 <div>{errors.password}</div>
-                <div>{errors.size}</div>
-        </div> */}
+        </div>
         </Form>
         <Button
           tag={Link}

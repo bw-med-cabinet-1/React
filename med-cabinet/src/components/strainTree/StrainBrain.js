@@ -3,7 +3,6 @@ import '../../App.css';
 import StrainInterface from './StrainInterface'
 import { Route } from 'react-router-dom'
 import axios from 'axios'
-import StrainDisplay from './StrainDisplay'
 import { useHistory } from "react-router-dom";
 import StrainSearchPage from './StrainSearchPage'
 
@@ -53,6 +52,11 @@ const initialPatientFormValues = {
 
     const [yourStrainlist, setYourStrainList] = useState([])
 
+    const [activeTab, setActiveTab] = useState('1');
+
+    const toggle = tab => {
+      if(activeTab !== tab) setActiveTab(tab);
+    }
 
     const [patientFormValues, setPatientFormValues] = useState(initialPatientFormValues)
 
@@ -67,6 +71,7 @@ const initialPatientFormValues = {
             console.log(res.data["Nearest Neighbors"])
             setYourStrainList(res.data["Nearest Neighbors"])
             setPatientFormValues(initialPatientFormValues)
+            toggle('1')
             history.replace("/thisIsYourStrain")
           })
           .catch(err => {
@@ -84,6 +89,7 @@ const initialPatientFormValues = {
         exclude: [],
       }
     postNewStrainRequest(strainRequest)
+
     }
     
     return (
@@ -103,6 +109,8 @@ const initialPatientFormValues = {
                 strainList1={yourStrainlist}
                 setPatientFormValues={setPatientFormValues}
                 initialPFV={initialPatientFormValues}
+                toggle={toggle}
+                activeTab={activeTab}
               />
             </Route>
         </div>

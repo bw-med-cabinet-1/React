@@ -11,6 +11,9 @@ import axiosWithAuth from "./utils/axiosWithAuth";
 import PrivateRoute from "./utils/PrivateRoute";
 import StrainsPage from "./components/StrainsPage";
 import StrainBrain from './components/strainTree/StrainBrain'
+import schema from './validation/formSchema'
+import * as yup from 'yup'
+
 
 const initialRegFormValues = {
   username: "",
@@ -23,14 +26,23 @@ const initialLoginFormValues = {
   password: "",
 };
 
+const initialLoginFormErrors = {
+  username: "",
+  password: "",
+}
+
+
+
 function App() {
   const history = useHistory();
 
   const [regFormValues, setRegFormValues] = useState(initialRegFormValues);
   const [loginFormValues, setLoginFormValues] = useState(initialLoginFormValues);
+  const [loginFormErrors, setLoginFormErrors] = useState(initialLoginFormErrors)
 
 
   const changeLoginForm = (name, value) => {
+    validate(name, value)
     setLoginFormValues({ ...loginFormValues, [name]: value });
   };
 
@@ -92,6 +104,31 @@ function App() {
     postNewUser(newUser);
   };
 
+  const validate = (name, value) => {
+    // let's validate this specific key/value
+    // yup.reach will allow us to "reach" into the schema and test only one part.
+    // We give reach the schema as the first argument, and the key we want to test as the second.
+    yup
+      .reach(schema, name)
+      // we can then run validate using the value
+      .validate(value)
+      // if the validation is successful, we can clear the error message
+      .then(valid => { // eslint-disable-line
+        setLoginFormErrors({
+          ...loginFormErrors,
+          [name]: ""
+        })
+      })
+      /* if the validation is unsuccessful, we can set the error message to the message 
+        returned from yup (that we created in our schema) */
+      .catch(err => {
+        setLoginFormErrors({
+          ...loginFormErrors,
+          [name]: err.errors[0]
+        });
+      });
+  }
+
   return (
   <Switch>
       {/* <Router> */}
@@ -105,6 +142,7 @@ function App() {
             changeForm={changeLoginForm}
             submit={submitLoginForm}
             cancel={cancelInput}
+            errors={loginFormErrors}
           />
         </Route>  
         <PrivateRoute exact path="/strain-page" component={StrainsPage}/> 
