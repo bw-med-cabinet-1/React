@@ -111,6 +111,24 @@ const Styles = styled.div`
     button:hover {
         background-color: #5A6267;
     }
+
+    @media (max-width: 575px) {
+        .ailment {
+        width: 46%;
+    }
+
+    .positive-response {
+        width: 46%;
+    }
+
+    .negative-response {
+        width: 46%;
+    }
+
+    label {
+        font-size: 1em;
+    }
+    }
   
 `
 
