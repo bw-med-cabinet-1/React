@@ -3,10 +3,10 @@ import { Button, Form, FormGroup, Label, Input, FormText, Container } from 'reac
 import styled from 'styled-components'
 
 const Styles = styled.div`
-        margin: 2% auto;
+      {  margin: 2% auto;
         padding: 1% 3%;
         background-color: #edf4ed;
-        width: 70%;
+        width: 85%;
         border-radius: 10px;
         border: 2px solid #CED4DA;
 

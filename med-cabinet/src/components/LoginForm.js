@@ -60,6 +60,11 @@ const Styles = styled.div`
     color: #596267;
   }
 
+  .errors {
+    color: #596267;
+    font-size: 1.6em
+  }
+
   input {
   }
 `;
