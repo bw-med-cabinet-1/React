@@ -50,7 +50,7 @@ function App() {
         console.log(res.data);
         setLoginFormValues(initialLoginFormValues);
         localStorage.setItem("token", res.data.token);
-        history.push("/strain-page");
+        history.push("/findYourStrain");
       })
       .catch((err) => {
         console.log(userDetails);
@@ -67,6 +67,8 @@ function App() {
       .then((res) => {
         console.log(res);
         setRegFormValues(initialRegFormValues);
+        history.push('/login');
+        alert("You've successfully registered, Welcome!!")
       })
       .catch((err) => {
         debugger;
