@@ -52,4 +52,3 @@ const StrainsPage = () => {
   )
 }
 export default StrainsPage
-
